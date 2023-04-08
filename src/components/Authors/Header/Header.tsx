@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { defaultTheme } from '../../styled/styled'
 import styled from "styled-components";
-export default function HeaderInf() {
+interface Props {
+    counter:number
+    HandleClear: () => void
+}
+export default function HeaderInf({counter,HandleClear}:Props) {
+    
+
   return (
     <>
      <Header>
+      <HeaderCon>
           <Logo>Notifications</Logo>
-          <Counter>0</Counter>
-          <MarkRead>Mark All as read</MarkRead>
+          <Counter>{counter}</Counter>
+          </HeaderCon>
+          <MarkRead onClick={HandleClear}>Mark All as read</MarkRead>
         </Header>
     </>
   )
@@ -16,6 +24,10 @@ export default function HeaderInf() {
 export const Header = styled.header `
 display: flex;
 justify-content: space-around;
+`
+export const HeaderCon = styled.header `
+display: flex;
+column-gap: 6px;
 `
 export const HeaderComp = styled.div`
 

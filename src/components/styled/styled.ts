@@ -1,6 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
-
+interface UsersProps extends React.HTMLAttributes<HTMLElement> {
+  notifications?: boolean;
+}
 export const defaultTheme = {
   PrimaryColor: {
     Red: "hsl(1, 90%, 64%)",
@@ -34,7 +37,14 @@ export const GlobalStyle = createGlobalStyle`
  }
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  @media only screen and (min-width: 1440px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+`;
 
 export const CardComp = styled.div`
   background-color: ${defaultTheme.NeutralColor.White};
@@ -48,43 +58,69 @@ export const CardComp = styled.div`
   box-sizing: border-box;
 `;
 
-export const Users = styled.article `
-    padding: 18px;
-    display: flex;
-    
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 4px;
-    background-color:${defaultTheme.NeutralColor.White} ;
-    gap: 18px;
-    position: relative;
-`
-export const InfoWrapper = styled.div `
-display: flex;
-flex-direction: column;
-`
-export const UserImg = styled.img`
-width: 46px;
-    height: 46px;
-    border-radius: 50%;
-`
-export const NotificationAbout = styled.p `
+export const Users = styled.article<UsersProps>`
+  padding: 18px;
+  display: flex;
 
-`
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 4px;
+  background-color: ${(props) =>
+    props.notifications
+      ? defaultTheme.NeutralColor.VeryLightGrayishBlue
+      : defaultTheme.NeutralColor.White};
+  gap: 18px;
+  position: relative;
+`;
+export const Dot = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: ${defaultTheme.PrimaryColor.Red};
+  display: flex;
+`;
+export const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const UserImg = styled.img`
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+`;
+export const NotificationAbout = styled.p``;
 export const BoldNames = styled.span`
-    font-weight: ${defaultTheme.FontWeigh.weigh800};
-    color: #000;
-    margin-right: 3px;
-    &:hover {
-        color: ${defaultTheme.PrimaryColor.Blue};
-    }
-`
+  font-weight: ${defaultTheme.FontWeigh.weigh800};
+  color: #000;
+  margin-right: 3px;
+  &:hover {
+    color: ${defaultTheme.PrimaryColor.Blue};
+  }
+`;
 export const PostedDate = styled.p`
-color: ${defaultTheme.NeutralColor.GrayishBlue};
-`
-export const InfoLiked = styled.span `
-color: ${defaultTheme.NeutralColor.DarkGrayishBlue};
-&:hover {
-        color: ${defaultTheme.PrimaryColor.Blue};
-    }
-`
+  color: ${defaultTheme.NeutralColor.GrayishBlue};
+`;
+export const InfoLiked = styled.span`
+  color: ${defaultTheme.NeutralColor.DarkGrayishBlue};
+  &:hover {
+    color: ${defaultTheme.PrimaryColor.Blue};
+  }
+`;
+export const ChessClub = styled.span`
+  color: ${defaultTheme.PrimaryColor.Blue};
+  font-weight: ${defaultTheme.FontWeigh.weigh800};
+`;
+export const PriveteMsg = styled.p`
+  margin-top: 12px;
+  border: ${defaultTheme.NeutralColor.LightGrayishBlue1} 1px solid;
+  color: ${defaultTheme.NeutralColor.GrayishBlue};
+  border-radius: 8px;
+  padding: 18px;
+`;
+export const Kim = styled.img`
+  height: 45px;
+  width: 45px;
+  border-radius: 5px;
+  position: absolute;
+  right: 18px;
+`;
